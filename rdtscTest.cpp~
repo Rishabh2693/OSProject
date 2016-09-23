@@ -1,0 +1,12 @@
+#include <stdio.h>
+#include <x86intrin.h>
+#include<stdint.h>
+#include<inttypes.h>
+#pragma intrinsic(__rdtsc)
+using namespace std;
+int main()
+{
+    uint64_t i;
+    i = __rdtsc();
+    printf("%" PRIu64 " ticks\n", i);
+}

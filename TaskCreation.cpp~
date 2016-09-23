@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <x86intrin.h>
+#include<stdint.h>
+#include<inttypes.h>
+#include<iostream>
+#include<time.h>
+#include<sys/time.h>
+#include<unistd.h>
+
+#pragma intrinsic(__rdtsc)
+using namespace std;
+
+int main(){
+	uint64_t  t2,t3;
+	t2 = __rdtsc();
+	pid_t pid = fork();
+	t3 = __rdtsc();
+	cout<<t3-t2<<"\n";
+
+}
