@@ -14,7 +14,6 @@ int i;
 uint64_t t1,t;
 for(i=0;i<10;i++){
 	unsigned cycles_high,cycles_low,cycles_high1,cycles_low1;
-	uint64_t  t2,t3;
 	asm volatile ("CPUID\n\t"
  "RDTSC\n\t"
  "mov %%edx, %0\n\t"
@@ -36,5 +35,5 @@ t =  ((uint64_t)cycles_low) | (((uint64_t)cycles_high)<<32);
 sum=sum+(t1-t);
 printf("%"PRIu64"\n",(t1-t));
 }
-printf("%"PRIu64"\n",sum/10);
+printf("%"PRIu64"\n",sum/(10*100));
 }

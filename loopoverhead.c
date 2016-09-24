@@ -35,5 +35,5 @@ t =  ((uint64_t)cycles_low) | (((uint64_t)cycles_high)<<32);
 sum=sum+(t1-t);
 printf("%"PRIu64"\n",(t1-t));
 }
-printf("%"PRIu64"\n",sum/10);
+printf("%"PRIu64"\n",sum/(10*100));
 }
