@@ -9,8 +9,9 @@
 
 #pragma intrinsic(__rdtsc)
 
-int main(){
+int main(){8192;
 	int j=0;
+	int times = 1000;
 	int timeOverhead = 108;
 	int loopOverhead = 20;
 	
@@ -18,19 +19,28 @@ int main(){
 	{
 		uint64_t sum = 0;
 		int *a = (int *) malloc(j*sizeof(int)); 
-		memset(a, 1, sizeof(a));
-		int i;
+		int i,index;
+		a[0] = 0;
+   		 for (i = 0; i < j; i++) {
+       			 index = i + stride;
+       			 if (index >= j) {
+       			     index %= j;
+       			 }
+       			 a[i] = index;
+    		}	
+		
 		uint64_t t1,t;
 		int k;
 		for(k = 0;k<30; k++){
+			int temp = 0;
 			unsigned cycles_high,cycles_low,cycles_high1,cycles_low1;
 			asm volatile ("CPUID\n\t"
  			"RDTSC\n\t"
  			"mov %%edx, %0\n\t"
  			"mov %%eax, %1\n\t": "=r" (cycles_high), "=r" (cycles_low)::
 			"%rax", "%rbx", "%rcx", "%rdx");
-				for(i=0;i<j;i++){
-				int tmp = a[i];	
+				for(i=0;i<1000;i++){
+				  temp = a[temp];	
 				}
 			asm volatile("RDTSCP\n\t"
  			"mov %%edx, %0\n\t"
@@ -45,7 +55,7 @@ int main(){
 		}
 
 
-		printf("%"PRIu64"  %d %d\n",sum/((k-1)*((j))),sum,j);
+		printf("%"PRIu64"  %d %d\n",sum/((k-1)*(1000)),sum,j);
 
 	}
 }
