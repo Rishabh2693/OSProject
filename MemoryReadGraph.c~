@@ -9,12 +9,16 @@
 
 #pragma intrinsic(__rdtsc)
 
-int main(){8192;
+int main(){
 	int j=0;
 	int times = 1000;
 	int timeOverhead = 108;
 	int loopOverhead = 20;
-	
+	int stride = 1024;
+	// 1024 Corresponds to 4K in memory as size of int is 4
+	int str[10]={512,1024,2048,4096,8192,16384,32768,65536,131072,262144};
+	int l;	
+	for( l = 0; l<10 ; l++)
 	for(j=1; j <256000000; j=j*2)
 	{
 		uint64_t sum = 0;
@@ -22,7 +26,7 @@ int main(){8192;
 		int i,index;
 		a[0] = 0;
    		 for (i = 0; i < j; i++) {
-       			 index = i + stride;
+       			 index = i + str[l];
        			 if (index >= j) {
        			     index %= j;
        			 }
@@ -58,4 +62,5 @@ int main(){8192;
 		printf("%"PRIu64"  %d %d\n",sum/((k-1)*(1000)),sum,j);
 
 	}
+		printf("Next Stride\n");
 }
