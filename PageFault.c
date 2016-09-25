@@ -30,7 +30,6 @@ uint64_t t1,t;
 "%rax", "%rbx", "%rcx", "%rdx");
 int j;
 char c;
-printf("wassup");
 for(j=0;j<100;j++)
 {
 	c = map[(((i+1) * offset) % (FILESIZE - 1))]; 
@@ -44,7 +43,7 @@ t1 =  ((uint64_t)cycles_low1) | (((uint64_t)cycles_high1)<<32);
 t =  ((uint64_t)cycles_low) | (((uint64_t)cycles_high)<<32);
 sum=(t1-t);
 
-printf("%"PRIu64"\n",sum/(100));
+printf("%f\n",(float)(sum/(100)));
 munmap(map,FILESIZE);
  close(fileDes);
 }

@@ -9,7 +9,7 @@
 
 #pragma intrinsic(__rdtsc)
 
-int main(){
+int main(){8192;
 	int j=0;
 	int times = 1000;
 	int timeOverhead = 108;
@@ -27,6 +27,7 @@ int main(){
 		a[0] = 0;
    		 for (i = 0; i < j; i++) {
        			 index = i + str[l];
+
        			 if (index >= j) {
        			     index %= j;
        			 }
